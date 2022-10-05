@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %} Shop{%endblock title%}
+{% block body %}
+{% load list_filter %}
+<div class="container">
+{{request.GET.param1}}
+    <div class="row">
+        <div class=" row-cols-1">
+            <div class="accordion accordion-flush text-center" id="accordionFlushExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="background:#cccccc;font-family: 'Poppins', sans-serif;">Price Filter
+                  </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class=" row-cols-1">
+                            <div class="card px-2">
+                                <div class="card-body">
+                                    <form id="price-range-form" method="POST" action={{request.get_full_path}}>
+                                        {% csrf_token %}
+                                        <p>Min Price</p>
+                                        <input  class="form-range" name="min" type="range" value="0" min="1" max="50000" oninput="this.nextElementSibling.value = this.value">
+                                        <output>0</output>
+                                        <p>Max Price</p>
+                                        <input  class="form-range" name="max" type="range" value="50000" min="1" max="50000" oninput="this.nextElementSibling.value = this.value">
+                                        <output>50000</output><br>
+                                        <a class="btn btn-light" href={{request.get_full_path}}> Cancel</a>
+                                        <button class ="btn btn-dark" style="background:#;font-family: 'Poppins', sans-serif;" type="submit" name= "Confirm"> Apply</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="album py-5">
+            <div class="container">
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 h-400" >
+                {%for product in products%}
+                 <div class="col">
+                     <div class="card shadow-sm ">
+                        <img src={{product.image_urls|filter|first}} class="d-block w-100" width="150" height="700">
+                        <div class="card-body">
+                          <p class="card-text"><a style="color:#000000;text-decoration: none;" href="{% url 'view_product' id=product.product_id %}">{{product.title}}</a></p>
+                          <div class="d-flex justify-content-between align-items-center">
+                            {% if request.user.is_staff %}
+                            <div class="btn-group">
+                              <a type="button" class="btn btn-sm btn-outline-secondary" href = "{% url 'view_product' id=product.product_id %}">View</a>
+                              <a type="button" class="btn btn-sm btn-outline-secondary" href = "{% url 'update_product' id=product.product_id %}">Edit</a>
+                              <a type="button" class="btn btn-sm btn-outline-secondary" href = "{% url 'delete_product' id=product.product_id %}">Delete</a>
+                            </div>
+                            {% endif %}
+                            <small class="text-muted">€ {{product.price}}</small>
+                          </div>
+                        </div>
+                     </div>
+                </div>
+                {%endfor%}
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="pagination pagination-lg justify-content-center">
+        <span class="step-links">
+            {% if products.has_previous %}
+                <a style="color:#975102;text-decoration: none;" href="?page=1">first</a>
+                <a style="color:#975B02;text-decoration: none;" href="?page={{ products.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ products.number }} of {{ products.paginator.num_pages }}.
+            </span>
+
+            {% if products.has_next %}
+                <a style="color:#975B02;text-decoration: none;" href="?page={{ products.next_page_number }}">next</a>
+                <a style="color:#975102;text-decoration: none;" href="?page={{ products.paginator.num_pages }}">last</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock body %}

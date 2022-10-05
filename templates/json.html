@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Add Json file {%endblock title%}
+{% block body %}
+<div container style="padding-top: 120px; padding-left: 220px;padding-right: 120px;">
+    <button onclick="history.back()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
+     <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card" style="background:#cccccc;">
+          <div class="card-body p-5 text-center" >
+              <h3><i class="fa fa-file" style="font-size:100px;"></i></h3>
+                  <h2 class="text-center">Add json file</h2>
+                  <p> Add products in bulk from file in json format</p>
+                  <div class="mb-md-5 mt-md-4 pb-5">
+                  <form method ='POST' action='' enctype="multipart/form-data">
+                      {% csrf_token %}
+                      {%for fm in form %}
+                    <div class="form-outline form-white mb-4">
+                      <input class="form-control form-control-lg"  {{fm}}
+                    </div>
+                      {% endfor %}
+                    <button class="btn btn-outline-dark btn-lg px-5"  type="submit">Submit</button>
+                  </form>
+                  </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock body%}

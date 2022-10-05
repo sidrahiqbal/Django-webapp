@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %} Shop{%endblock title%}
+{% block body %}
+{% load list_filter %}
+<div class="container">
+<div class="row">
+<div class=" row-cols-1">
+            <a  type="button" class="btn btn-light" href = {{request.session.url}}> Remove Filter</a>
+    </div>
+  </div>
+</div>
+</div>
+<div>
+<div class="album py-5">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 h-400" >
+        {%for product in products%}
+         <div class="col"> 
+          <div class="card shadow-sm ">
+            <img src={{product.image_urls|filter|first}} class="d-block w-100" width="100" height="500">
+            <div class="card-body">
+              <p class="card-text"><a style="color:#000000;text-decoration: none;" href="{% url 'view_product' id=product.product_id %}">{{product.title}}</a></p>
+              <div class="d-flex justify-content-between align-items-center">
+                {% if request.user.is_staff %}
+                <div class="btn-group">
+                  <a type="button" class="btn btn-sm btn-outline-secondary" href = "{% url 'view_product' id=product.product_id %}">View</a>
+                  <a type="button" class="btn btn-sm btn-outline-secondary" href = "{% url 'update_product' id=product.product_id %}">Edit</a>
+                  <a type="button" class="btn btn-sm btn-outline-secondary" href = "{% url 'delete_product' id=product.product_id %}">Delete</a>
+                </div>
+                {% endif %}
+                <small class="text-muted">R$ {{product.price}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+        </div>
+    </div>
+</div>
+<div class="pagination pagination-lg justify-content-center">
+    <span class="step-links">
+        {% if products.has_previous %}
+            <a style="color:#975102;text-decoration: none;" href="?page=1">first</a>
+            <a style="color:#975B02;text-decoration: none;" href="?page={{ products.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ products.number }} of {{ products.paginator.num_pages }}.
+        </span>
+
+        {% if products.has_next %}
+            <a style="color:#975B02;text-decoration: none;" href="?page={{ products.next_page_number }}">next</a>
+            <a style="color:#975102;text-decoration: none;" href="?page={{ products.paginator.num_pages }}">last</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock body %}
+

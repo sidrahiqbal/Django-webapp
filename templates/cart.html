@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %} Cart {%endblock title%}
+{% block body %}
+{% load list_filter %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+  <strong>{{ message.tags }}</strong> {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+<div class="=container">
+  <section class="vh-100" >
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col" style="text-align:center;">
+          <p><span class="h2">Shopping Cart </span><span class="h4">({{orders|length}} item in your cart)</span></p>
+          {% if orders %}
+          {% for order in orders %}
+          <div class="card mb-4">
+            <div class="card-body p-4">
+              <div class="row align-items-center">
+                <div class="col-md-2">
+                  <img src={{order.image|filter|first}}  width="max-width: 100%" height="max-height: 100%"
+                    class="img-fluid" alt="Generic placeholder image">
+                </div>
+                <div class="col-sm d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Name</p>
+                    <p class="lead fw-normal mb-0">{{order.product_name}}</p>
+                  </div>
+                </div>
+                <div class="col-sm d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Size</p>
+                    <p class="lead fw-normal mb-0">{{order.size}}</p>
+                  </div>
+                </div>
+                <div class="col-sm d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Color</p>
+                    <p class="lead fw-normal mb-0">{{order.color}}</p>
+                  </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Quantity</p>
+                    <p class="lead fw-normal mb-0">{{order.quantity}}</p>
+                  </div>
+                </div>
+                <div class="col-sm d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Price</p>
+                    <p class="lead fw-normal mb-0">R${{order.product_price}}</p>
+                  </div>
+                </div>
+                <div class="col-sm d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Total</p>
+                    <p class="lead fw-normal mb-0">R${{order.total}}</p>
+                  </div>
+                </div>
+                <div class="col-sm d-flex justify-content-center">
+                  <div>
+                    <a href="/delete_order/{{order.order_id}}" style="font-size:36px;color: #342809;"><i class="fas fa-trash-alt"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <div class="card mb-5">
+            <div class="card-body p-4">
+              <div class="float-end">
+                <p class="mb-0 me-5 d-flex align-items-center">
+                  <span class="small text-muted me-2">Order total:</span><span class="lead fw-normal">R${{total_amount}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-light btn-lg me-2" onclick="location.href = '{% url 'shop' %}'">Continue shopping</button>
+            <button type="button" class="btn btn-dark"  onclick="location.href = '{% url 'checkout' %}'">Checkout</button>
+          </div>
+          {% else %}
+          <p><span class="h2">No Orders yet </span></p>
+            <button type="button" class="btn btn-light btn-lg me-2" onclick="location.href = '{% url 'shop' %}'">Shop</button>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock body %}

@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>    {% block title%}  {% endblock title%}</title>
+    <link rel="stylesheet" href="/static/base.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </head>
+<body>
+    <nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false" style=" padding-top: 15px; color:#000000;font-family: 'Poppins', sans-serif;">
+            UOMO
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Bermuda' gender='Uomo' %}">Bermuda</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Camicie' gender='Uomo' %}">Camicie</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Cardigan' gender='Uomo' %}">Cardigan</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Giubbini' gender='Uomo' %}">Giubbini</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Jeans' gender='Uomo' %}">Jeans</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Maglie' gender='Uomo' %}">Maglie</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Pantaloni' gender='Uomo' %}">Pantaloni</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='T-Shirt' gender='Uomo' %}">T-Shirt</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="padding-top: 15px; color:#000000;font-family: 'Poppins', sans-serif;" >
+            DONNA
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Abiti' gender='Donna' %}">Abiti</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Body' gender='Donna' %}">Body</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Top' gender='Donna' %}">Top</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Tute'  gender='Donna' %}">Tute</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Shorts'  gender='Donna' %}">Shorts</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Jeans' gender='Donna' %}">Jeans</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Pantaloni' gender='Donna' %}">Pantaloni</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Gonne' gender='Donna' %}">Gonne</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Camicie e Casacche' gender='Donna' %}">Camicie e Casacche</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Cappotti' gender='Donna' %}">Cappotti</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Cardigan' gender='Donna' %}">Cardigan</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Felpe' gender='Donna' %}">Felpe</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Giacche' gender='Donna' %}">Giacche</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Giubbini' gender='Donna' %}">Giubbini</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Maglieria' gender='Donna' %}">Maglieria</a></li>
+            <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Smanicati' gender='Donna' %}">Smanicati</a></li>
+          </ul>
+        </li>
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false" style=" padding-top: 15px; color:#000000;font-family: 'Poppins', sans-serif;" >
+            ACCESSORI
+          </a>
+          <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Scarpe' gender='donna' %}">Scarpe</a></li>
+              <li><a class="dropdown-item" href="{% url 'categorywise_products' category='Stivali' gender='donna' %}">Stivali</a></li>
+          </ul>
+          </li>
+        {% if request.user.is_staff %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style=" padding-top: 15px; color:#000000;font-family: 'Poppins', sans-serif;">
+            ADD PRODUCTS
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'add_product' %}">Add manually</a></li>
+            <li><a class="dropdown-item" href="{% url 'add_json_file' %}">Add via JSON</a></li>
+          </ul>
+        </li>
+        {% endif %}
+        <a href="{%url 'shop' %}" style="font-size: 32px;font-weight: 500; padding-left: 450px; color:#000000; text-decoration: none; font-family: 'Poppins', sans-serif;"><strong>CANDIDA</strong></a>
+      </ul>
+      <form class="form-inline my-8 my-lg-0" method="POST" action="{% url 'search_brand' %}">
+        {% csrf_token %}
+      <div class="input-group rounded">
+        <input name="brand" type="search" class="form-control rounded" placeholder="Search by Brand" aria-label="Search" aria-describedby="search-addon" />
+          <button type="submit" class="btn btn-dark" >
+          <i class="fas fa-search"></i> </button>
+      </div>
+      </form>
+        {% if request.user.is_authenticated %}
+        {% if request.user.is_staff == False %}
+        <a href="{% url 'cart' %}" class="icon-block" style="color:#000000">
+        <i style="font-size:30px;padding-left:20px;" class="fa fa-shopping-cart" aria-hidden="true"></i>
+        </a>
+        {%endif%}
+      <ul class="navbar-nav  mb-2 mb-lg-0">
+       <li class="nav-item dropdown " style="padding-right:65px;">
+        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:#000000">
+        <i style="font-size:30px;padding-left:20px;" class="fa fa-user " aria-hidden="true"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+          <li><a class="dropdown-item" href="{% url 'reset_password' %}">Reset Password</a></li>
+          <li><a  type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete Account</a></li>
+          </ul>
+        </li>
+      </ul>
+         {% else %}
+      <ul class="navbar-nav  mb-2 mb-lg-0">
+       <li class="nav-item dropdown" style="padding-right:85px;">
+        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:#000000">
+        <i style="font-size:30px;" class="fa fa-user" aria-hidden="true"></i>
+        </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+          </ul>
+        </li>
+      </ul>
+        {% endif %}
+    </div>
+  </div>
+</nav>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-user-times"></i></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ user.get_username }} are you sure to delete account?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a type="button" class="btn btn-primary" href = "{% url 'delete_account' %}">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% block body%}  {% endblock body%}
+    <div style="clear:both;"></div>
+<footer>
+  <div class="container">
+    <div class="content">
+      ⁡⁢⁣⁣ ⁡
+      <div class="col">
+        <p>contact us</p>
+        <p>
+          hi, we are always open for cooperation and suggestions, <br />
+          contact us in one of the ways below:
+        </p>
+        <div>
+          <div class="col-info">
+            <p>
+              PHONE NUMBER <br />
+              <span>+1 (800) 060-07-30</span>
+            </p>
+            <p>
+              OUR LOCATION <br />
+              <span>715 Fake Street, Rome<br />
+                10021 Italy</span>
+            </p>
+          </div>
+          <div class="col-info">
+            <p>
+              EMAIL ADDRESS <br />
+              <span>support@candida.com.it</span>
+            </p>
+
+            <p>
+              WORKING HOURS <br />
+              <span>Mon-sat 10:00pm - 7:00pm</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      ⁡⁢⁣⁡⁢⁣⁣ ⁡
+      <div class="col">
+        <div class="column">
+          <p>information</p>
+          <p>about us</p>
+          <p>delivery information</p>
+          <p>privacy policy</p>
+          <p>brands</p>
+          <p>contact us</p>
+          <p>returns</p>
+          <p>site map</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="column">
+          <p>my account</p>
+          <p>store location</p>
+          <p>order history</p>
+          <p>wish list</p>
+          <p>newsletter</p>
+          <p>special offers</p>
+          <p>gift certificates</p>
+          <p>affiliate</p>
+        </div>
+      </div>
+      ⁡⁢⁣⁣ ⁡
+      <div class="col">
+        <p>newsletter</p>
+        <p>
+          enter your email address below to subscribe to our newsletter<br />
+          and keep up to date with discounts and special offers.
+        </p>
+        <div class="email">
+          <input type="email" placeholder="user@example.com" />
+          <button>Subscribe</button>
+        </div>
+        <p>follow us on social networks:</p>
+        <div class="social">
+          <img src="https://i.postimg.cc/44pPB9wk/facebook.png" alt="" />
+          <img src="https://i.postimg.cc/L8Q3nB4f/twitter.png" alt="" />
+          <img src="https://i.postimg.cc/TYG9S3Hy/instagram.png" alt="" />
+          <img src="https://i.postimg.cc/kGCxkTwr/youtube.png" alt="" />
+          <img src="https://i.postimg.cc/CKZHDBd2/telegram.png" alt="" />
+        </div>
+      </div>
+      ⁡⁢⁡⁢⁣⁣
+    </div>
+  </div>
+  <div class="content-foot">
+    <div class="container">
+      <div class="foot-text">
+        <p>© 2022 CANDIDA SRL tutti i diritti sono riservati - Partita Iva: 07387480630</p>
+        <div class="pay">
+          <img src="https://i.postimg.cc/PrtWyFPY/visa-logo-png-2013.png" alt="" />
+          <img src="https://i.postimg.cc/R0j1TSHZ/mastercard-PNG23.png" alt="" />
+          <img src="https://i.postimg.cc/sggJj0zs/paypal-logo-png-2119.png" alt="" />
+          <img src="https://i.postimg.cc/hjdsFzBm/American-Express-logo-PNG14.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

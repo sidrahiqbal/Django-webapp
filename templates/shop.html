@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %} Shop{%endblock title%}
+{% block body %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      <strong>{{ message.tags }}</strong> {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/static/3.png" class="d-block w-100" width="1600" height="800">
+    </div>
+    <div class="carousel-item">
+      <img src="/static/2.png" class="d-block w-100" width="1600" height="800">
+    </div>
+    <div class="carousel-item">
+      <img src="/static/4.jpg" class="d-block w-100" width="1600" height="800">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+{% load list_filter %}
+<div class="album py-5">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 h-400" >
+          {% for product in products %}
+        <div class="col">
+            <div class="card shadow-sm ">
+            <img src={{product.image_urls|filter|first}} class="d-block w-100" width="150" height="700">
+            <div class="card-body">
+              <p class="card-text"><a style="color:#000000;text-decoration: none;" href="{% url 'view_product' id=product.product_id %}">{{product.title}}</a></p>
+              <div class="d-flex justify-content-between align-items-center">
+                {% if request.user.is_staff %}
+              <div class="btn-group">
+                  <a type="button" class="btn btn-sm btn-outline-secondary" href = "{% url 'view_product' id=product.product_id %}">View</a>
+                  <a type="button" class="btn btn-sm btn-outline-secondary" href = "{% url 'update_product' id=product.product_id %}">Edit</a>
+                  <a type="button" class="btn btn-sm btn-outline-secondary" href = "{% url 'delete_product' id=product.product_id %}">Delete</a>
+                </div>
+                {% endif %}
+                <small class="text-muted">R$ {{product.price}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+          {% endfor %}
+      </div>
+    </div>
+</div>
+{% endblock body%}
